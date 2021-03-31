@@ -41,7 +41,6 @@ You can enable static type checking by including a `tsconfig.json` file:
     }
 }
 ```
-
 For example, it will detect this common error:`
 
 ```javascript
@@ -50,4 +49,31 @@ if(field.value === "Erik") {
     console.log("hi there")
 } 
 ```
-🚨 Type checking will show an error, because `querySelector` might return `undefined`, and undefined has no `.value`.
+Because `querySelector` might return `undefined`, you shouldn't use `.value` directly without a null check.
+
+## Type checking
+
+Once you declare a variable to be of a certain type, you can't change it afterwards.
+
+```javascript
+let a = 5
+a  = "boink" // 🚨 ERROR a must be of type number
+```
+
+## Code completion
+
+Type checking will provide better code completion:
+
+```javascript
+let b = new Ball()
+b. // intellisense will show b.update() and b.removeBall()
+```
+It will show an error if you call a method that doesn't exist.
+```javascript
+let b = new Ball()
+b.bounce() // 🚨  ERROR ball has no bounce method
+```
+
+
+
+😭 static type checking does not always seem to work if a variable is initialised empty, and it doesn't check the types inside an array?
