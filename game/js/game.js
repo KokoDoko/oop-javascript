@@ -6,15 +6,6 @@ class Game {
     #balls = []
 
     constructor() {
-
-        let b = 4
-        b = "hoi"
-
-
-
-
-
-
         for (var i = 0; i < 15; i++) {
             this.#balls.push(new Ball(this))
         }
